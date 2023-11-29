@@ -1,0 +1,64 @@
+<%- include('../partials/sidebar.ejs'); %>
+
+    <main class="">
+        <div class="grid mb-4 pb-10 px-8 mx-4 rounded-3xl bg-gray-50 border-4 border-green-400">
+
+            <div class="py-5">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <!--Boton nuevo   -->
+                    <div class="space-x-8">
+                        <a href="categories/add"
+                            class="bg-indigo-600 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">
+                            <i class="fa-solid fa-plus"></i> Nuevo
+                        </a>
+                    </div>
+                    <a href=""></a>
+                    <!--Tabla lista de items   -->
+                    <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
+                        <table class="w-full divide-y divide-gray-200 table-auto">
+                            <thead class="bg-indigo-500 text-white">
+                                <tr class="text-left text-xs font-bold  uppercase">
+                                    <td scope="col" class="px-6 py-3">ID</td>
+                                    <td scope="col" class="px-6 py-3">Nombre categoría</td>
+                                    <td scope="col" class="px-6 py-3 text-center">Opciones</td>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-200 dark:text-gray-400">
+                                <% for(var i = data.length - 1; i >= 0; i--) { %>
+
+                                    <tr class="text-sm font-medium text-gray-900">
+                                        <td class="px-6 py-4">
+                                            <span
+                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-indigo-500 text-white">
+                                                <%= data[i].id%>
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 dark:text-gray-400">
+                                            <%= data[i].nombre%>
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <a href="../categories/edit/<%=data[i].id%>"
+                                                class="bg-green-600 text-white rounded px-2 py-2 hover:bg-green-400"
+                                                text-xs>
+                                                <i class="fa-solid fa-pen-to-square"></i>Editar</a>
+                                            <a href="../categories/delete/<%=data[i].id%>"
+                                                onclick="return confirm('Are You sure?')"
+                                                class="bg-red-600 text-white rounded px-2 py-2 hover:bg-red-400"
+                                                text-xs>
+                                                <i class="fa-solid fa-trash"></i>Eliminar</a>
+                                    </tr>
+                                    <% } %>
+                            </tbody>
+                        </table>
+                        <!-- if result is empty -->
+                        <% if(!data.length) { %>
+                            <p class="text-center">No se encunetra categorias</p>
+                            <% } %>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <%- include('../partials/footer.ejs'); %>
